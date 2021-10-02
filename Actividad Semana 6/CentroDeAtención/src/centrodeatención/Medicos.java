@@ -11,6 +11,7 @@ package centrodeatención;
  */
 public class Medicos extends Persona {
     private String centro;
+    
     public void setCentro(String centro){
         this.centro = centro;
     }

@@ -3,13 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/centrodeatención/CentroDeAtención.java</file>
             <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/centrodeatención/Pacientes.java</file>
             <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/frames_utilidad/Seleccionar_medicos.java</file>
             <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/centrodeatención/Medicos.java</file>
             <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/centrodeatención/Persona.java</file>
+            <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/centrodeatención/Centro.java</file>
             <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/frames/frame_principal.java</file>
+            <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/frames_utilidad/Seleccionar_centros.java</file>
             <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/frames/Pacientes_frame.java</file>
             <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/frames/Medicos_frame.java</file>
+            <file>file:/C:/Users/camil/Documents/NetBeansProjects/CentroDeAtención/src/frames/Centros_frame.java</file>
         </group>
     </open-files>
 </project-private>
