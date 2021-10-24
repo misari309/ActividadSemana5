@@ -13,8 +13,13 @@ import Vista.Registros_frame;
 import Vista.Servicios_frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import static java.lang.String.valueOf;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -28,6 +33,7 @@ public class Controlador implements ActionListener{
     private final Servicios_frame servicios_frame;
     private final CentroDeLavado centrodelavado_model;
     private final Principal_frame principal_frame;
+    TableRowSorter trs;
     
     public Controlador (Registros_frame registros_frame, Servicios_frame servicios_frame, CentroDeLavado centrodelavado_model, Principal_frame principal_frame) {
         this.registros_frame = registros_frame;
@@ -38,6 +44,7 @@ public class Controlador implements ActionListener{
             enviarSolicitudServicio();
             limpiarCasillas();
             rellenarTabla();
+            rellenarTablaBusqueda(registros_frame.txt_buscar_funcionario.getText());
         });
         this.principal_frame.btn_iniciar_servicio.addActionListener((ActionEvent e) -> {
             iniciarServicios();
@@ -45,7 +52,19 @@ public class Controlador implements ActionListener{
         this.principal_frame.btn_iniciar_registros.addActionListener((ActionEvent e) -> {
             iniciarRegistros();
         });
-        
+        this.registros_frame.btn_buscar_funcionario.addActionListener((ActionEvent e) -> {
+            cambiarBuscador(registros_frame.txt_buscar_funcionario.getText());
+            rellenarTablaBusqueda(registros_frame.buscador.getText());
+        });
+        this.registros_frame.btn_buscar_fecha.addActionListener((ActionEvent e) -> {
+            cambiarBuscador(registros_frame.txt_buscar_fecha.getText());
+            rellenarTablaBusqueda(registros_frame.buscador.getText());
+        });
+        this.registros_frame.btn_buscar_servicio.addActionListener((ActionEvent e) -> {
+            cambiarBuscador(registros_frame.txt_buscar_servicio.getText());
+            rellenarTablaBusqueda(registros_frame.buscador.getText());
+        });
+       
     }    
     
     public void iniciarPrincipal_frame () {
@@ -92,7 +111,17 @@ public class Controlador implements ActionListener{
     }
     
     public void rellenarTabla(){
-        String matriz [][] = centrodelavado_model.rellenarTabla();
+        String matriz[][] = new String[centrodelavado_model.getListaRegistros().size()][10];
+        for(int i=0; i<centrodelavado_model.getListaRegistros().size();i++){
+            matriz[i][0]=valueOf(centrodelavado_model.getListaRegistros().get(i).getFecha());
+            matriz[i][1]=valueOf(centrodelavado_model.getListaRegistros().get(i).getServicios());
+            matriz[i][2]=valueOf(centrodelavado_model.getListaRegistros().get(i).getFuncionario());
+            matriz[i][3]=valueOf(centrodelavado_model.getListaRegistros().get(i).getVehiculo().getCodigo());
+            matriz[i][4]=valueOf(centrodelavado_model.getListaRegistros().get(i).getVehiculo().getMarca());
+            matriz[i][5]=valueOf(centrodelavado_model.getListaRegistros().get(i).getVehiculo().getLinea());
+            matriz[i][6]=valueOf(centrodelavado_model.getListaRegistros().get(i).getVehiculo().getAgnio());
+            matriz[i][7]=valueOf(centrodelavado_model.getListaRegistros().get(i).getPrecio());
+        }
         registros_frame.table_registros.setModel(new javax.swing.table.DefaultTableModel(
             matriz,
             new String [] {
@@ -123,6 +152,56 @@ public class Controlador implements ActionListener{
         }
         );
         registros_frame.table_registros.setRowSorter(elQueOrdena);
+    }
+    
+    public void cambiarBuscador(String buscador){
+        registros_frame.buscador.setText(buscador);
+    }
+    
+    public void rellenarTablaBusqueda(String busqueda){
+        ArrayList<Registro> lista_busqueda = centrodelavado_model.getListaBusquedaFuncionario(busqueda);
+                
+        String matriz[][] = new String[lista_busqueda.size()][10];
+        for(int i=0; i<lista_busqueda.size();i++){
+            matriz[i][0]=valueOf(lista_busqueda.get(i).getFecha());
+            matriz[i][1]=valueOf(lista_busqueda.get(i).getServicios());
+            matriz[i][2]=valueOf(lista_busqueda.get(i).getFuncionario());
+            matriz[i][3]=valueOf(lista_busqueda.get(i).getVehiculo().getCodigo());
+            matriz[i][4]=valueOf(lista_busqueda.get(i).getVehiculo().getMarca());
+            matriz[i][5]=valueOf(lista_busqueda.get(i).getVehiculo().getLinea());
+            matriz[i][6]=valueOf(lista_busqueda.get(i).getVehiculo().getAgnio());
+            matriz[i][7]=valueOf(lista_busqueda.get(i).getPrecio());
+        }
+        registros_frame.table_registros1.setModel(new javax.swing.table.DefaultTableModel(
+            matriz,
+            new String [] {
+                "Fecha", "Servicio", "Funcionario", "Código", "Marca", "Linea", "Año", "Precio"
+            } 
+            
+        ){
+            
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            };
+            
+        });
+        
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<>(
+        new javax.swing.table.DefaultTableModel(
+            matriz,
+            new String [] {
+                "Fecha", "Servicio", "Funcionario", "Código", "Marca", "Linea", "Año", "Precio"
+            } 
+            
+        ){
+            
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            };
+            
+        }
+        );
+        registros_frame.table_registros1.setRowSorter(elQueOrdena);
     }
     
     public void limpiarCasillas(){

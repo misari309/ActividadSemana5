@@ -5,6 +5,11 @@
  */
 package Vista;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author camil
@@ -28,15 +33,43 @@ public class Registros_frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_registros = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txt_buscar_funcionario = new javax.swing.JTextField();
+        btn_buscar_funcionario = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        table_registros1 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        txt_buscar_fecha = new javax.swing.JTextField();
+        btn_buscar_fecha = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        buscador = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txt_buscar_servicio = new javax.swing.JTextField();
+        btn_buscar_servicio = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         table_registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Fecha", "Servicio", "Funcionario", "Código", "Marca", "Linea", "Año", "Precio"
@@ -66,31 +99,177 @@ public class Registros_frame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel1.setText("Registros");
 
+        jLabel2.setText("Buscar por funcionario: ");
+
+        txt_buscar_funcionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_buscar_funcionarioActionPerformed(evt);
+            }
+        });
+        txt_buscar_funcionario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_buscar_funcionarioKeyTyped(evt);
+            }
+        });
+
+        btn_buscar_funcionario.setText("Buscar");
+
+        table_registros1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Fecha", "Servicio", "Funcionario", "Código", "Marca", "Linea", "Año", "Precio"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(table_registros1);
+        table_registros1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (table_registros1.getColumnModel().getColumnCount() > 0) {
+            table_registros1.getColumnModel().getColumn(0).setPreferredWidth(30);
+            table_registros1.getColumnModel().getColumn(2).setPreferredWidth(70);
+            table_registros1.getColumnModel().getColumn(3).setPreferredWidth(30);
+            table_registros1.getColumnModel().getColumn(4).setPreferredWidth(30);
+            table_registros1.getColumnModel().getColumn(5).setPreferredWidth(30);
+            table_registros1.getColumnModel().getColumn(6).setPreferredWidth(30);
+            table_registros1.getColumnModel().getColumn(7).setPreferredWidth(25);
+        }
+
+        jLabel3.setText("Buscar por fecha: ");
+
+        txt_buscar_fecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_buscar_fechaActionPerformed(evt);
+            }
+        });
+        txt_buscar_fecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_buscar_fechaKeyTyped(evt);
+            }
+        });
+
+        btn_buscar_fecha.setText("Buscar");
+
+        jLabel4.setText("Buscando");
+
+        buscador.setText("...");
+
+        jLabel5.setText("Buscar por servicio: ");
+
+        txt_buscar_servicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_buscar_servicioActionPerformed(evt);
+            }
+        });
+        txt_buscar_servicio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_buscar_servicioKeyTyped(evt);
+            }
+        });
+
+        btn_buscar_servicio.setText("Buscar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(442, 442, 442)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_buscar_servicio, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_buscar_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_buscar_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_buscar_fecha)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_buscar_funcionario)
+                                .addGap(62, 62, 62)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buscador, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_buscar_servicio))))
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txt_buscar_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar_funcionario)
+                    .addComponent(jLabel4)
+                    .addComponent(buscador))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txt_buscar_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar_fecha))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_buscar_servicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar_servicio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txt_buscar_funcionarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscar_funcionarioKeyTyped
+
+    }//GEN-LAST:event_txt_buscar_funcionarioKeyTyped
+
+    private void txt_buscar_funcionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscar_funcionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscar_funcionarioActionPerformed
+
+    private void txt_buscar_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscar_fechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscar_fechaActionPerformed
+
+    private void txt_buscar_fechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscar_fechaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscar_fechaKeyTyped
+
+    private void txt_buscar_servicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscar_servicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscar_servicioActionPerformed
+
+    private void txt_buscar_servicioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscar_servicioKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscar_servicioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -128,8 +307,23 @@ public class Registros_frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btn_buscar_fecha;
+    public javax.swing.JButton btn_buscar_funcionario;
+    public javax.swing.JButton btn_buscar_servicio;
+    public javax.swing.JLabel buscador;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     public javax.swing.JTable table_registros;
+    public javax.swing.JTable table_registros1;
+    public javax.swing.JTextField txt_buscar_fecha;
+    public javax.swing.JTextField txt_buscar_funcionario;
+    public javax.swing.JTextField txt_buscar_servicio;
     // End of variables declaration//GEN-END:variables
 }

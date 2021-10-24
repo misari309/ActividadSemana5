@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
  */
 public class CentroDeLavado {
     
-    public static ArrayList<Registro> lista_registros = new ArrayList<>();
+    public ArrayList<Registro> lista_registros = new ArrayList<>();
 
     public void agregarRegistro(Registro registro) {
         lista_registros.add(registro);
@@ -149,20 +149,19 @@ public class CentroDeLavado {
         return nombre;
     }
     
-    public String[][] rellenarTabla() {
-        String matriz[][] = new String[lista_registros.size()][10];
-        for(int i=0; i<lista_registros.size();i++){
-            matriz[i][0]=valueOf(lista_registros.get(i).getFecha());
-            matriz[i][1]=valueOf(lista_registros.get(i).getServicios());
-            matriz[i][2]=valueOf(lista_registros.get(i).getFuncionario());
-            matriz[i][3]=valueOf(lista_registros.get(i).getVehiculo().getCodigo());
-            matriz[i][4]=valueOf(lista_registros.get(i).getVehiculo().getMarca());
-            matriz[i][5]=valueOf(lista_registros.get(i).getVehiculo().getLinea());
-            matriz[i][6]=valueOf(lista_registros.get(i).getVehiculo().getAgnio());
-            matriz[i][7]=valueOf(lista_registros.get(i).getPrecio());
+    public ArrayList<Registro> getListaRegistros() {
+          return lista_registros;
+    }
+    
+    public ArrayList<Registro> getListaBusquedaFuncionario(String busqueda){
+        int filas = 0;
+        ArrayList<Registro> lista_busqueda = new ArrayList<>();
+        for (int i=0; i<lista_registros.size();i++) {
+            if (busqueda.equals(lista_registros.get(i).getFuncionario()) || busqueda.equals(valueOf(lista_registros.get(i).getFecha())) || busqueda.equals(valueOf(lista_registros.get(i).getServicios()))) {
+                lista_busqueda.add(lista_registros.get(i));
+            }
         }
-        return matriz;
-        
+        return lista_busqueda;
     }
     
     public void realizarServicio(String servicio){
